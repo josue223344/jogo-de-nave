@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cvm1s4kmmavk3"
-path="res://.godot/imported/nave.png-687d48a0f217da0cc91046894acae7e9.ctex"
+uid="uid://c2ii25kxgexyn"
+path="res://.godot/imported/inimigo 1.png-510b21a941cbabaf869901a2dfabd81f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/nave.png"
-dest_files=["res://.godot/imported/nave.png-687d48a0f217da0cc91046894acae7e9.ctex"]
+source_file="res://enemy/inimigo 1.png"
+dest_files=["res://.godot/imported/inimigo 1.png-510b21a941cbabaf869901a2dfabd81f.ctex"]
 
 [params]
 

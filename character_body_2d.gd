@@ -4,6 +4,7 @@ const SPEED = 300.0
 
 @onready var sprite = $AnimatedSprite2D
 
+# Movimentação
 func _physics_process(_delta: float) -> void:
 	var direction := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 
@@ -14,7 +15,7 @@ func _physics_process(_delta: float) -> void:
 
 	move_and_slide()
 
-	# Animação parado
+# Animação
 	if velocity == Vector2.ZERO:
 		sprite.play("idle")
 	elif velocity.x < 0:
