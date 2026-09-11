@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bfl42fs5em7oq"]
 
 [ext_resource type="Texture2D" uid="uid://c2ii25kxgexyn" path="res://enemy/inimigo 1.png" id="1_dhuw2"]
-[ext_resource type="Script" uid="uid://byaarj63u1mbt" path="res://enemy/script do inimigo.gd" id="1_kj1lp"]
+[ext_resource type="Script" uid="uid://byaarj63u1mbt" path="res://enemy/character_body_2d.gd" id="1_kj1lp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kj1lp"]
 atlas = ExtResource("1_dhuw2")
@@ -25,7 +25,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mp1n0"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_2erok"]
+radius = 16.0
 
 [node name="Node2D" type="Node2D" unique_id=2118504158]
 
@@ -39,6 +40,6 @@ sprite_frames = SubResource("SpriteFrames_g4v7s")
 animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1694919308]
-shape = SubResource("RectangleShape2D_mp1n0")
+shape = SubResource("CircleShape2D_2erok")
 
 [node name="Timer" type="Timer" parent="CharacterBody2D" unique_id=35491309]

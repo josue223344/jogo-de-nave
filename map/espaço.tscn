@@ -5,8 +5,8 @@
 
 [node name="Node2D" type="Node2D" unique_id=1142666595]
 
-[node name="zeca" parent="." unique_id=801510659 instance=ExtResource("2_liwkw")]
-position = Vector2(576, 320)
-
 [node name="Node2D" parent="." unique_id=2118504158 instance=ExtResource("2_oda23")]
 position = Vector2(576, 224)
+
+[node name="zeca" parent="." unique_id=801510659 instance=ExtResource("2_liwkw")]
+position = Vector2(576, 320)
