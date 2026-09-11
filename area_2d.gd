@@ -1,8 +1,9 @@
-extends CharacterBody2D
+extends Area2D
 
 const SPEED = 1.0
 
 var direction := Vector2.ZERO
+var velocity := 1
 
 @onready var sprite = $AnimatedSprite2D
 

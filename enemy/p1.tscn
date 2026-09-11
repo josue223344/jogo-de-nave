@@ -26,6 +26,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mp1n0"]
+size = Vector2(16, 16)
 
 [node name="Node2D" type="Node2D" unique_id=2118504158]
 
@@ -34,9 +35,10 @@ script = ExtResource("1_kj1lp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=1408324131]
 position = Vector2(-1.9073486e-06, 1.4305115e-06)
-scale = Vector2(2.9999998, 2.9999998)
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_g4v7s")
 animation = &"idle"
+frame_progress = 0.08998365
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1694919308]
 shape = SubResource("RectangleShape2D_mp1n0")
