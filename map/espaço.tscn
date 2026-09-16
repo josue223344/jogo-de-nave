@@ -2,22 +2,14 @@
 
 [ext_resource type="Script" uid="uid://pj3wyq8f3at3" path="res://map/espaço.gd" id="1_oda23"]
 [ext_resource type="PackedScene" uid="uid://kabos0sm28on" path="res://player/zeca.tscn" id="2_liwkw"]
-[ext_resource type="PackedScene" uid="uid://bjc0ryusd4bme" path="res://enemy/p2.tscn" id="3_oda23"]
+[ext_resource type="Script" uid="uid://d0jpi8cqace1q" path="res://map/spawner.gd" id="3_oda23"]
+[ext_resource type="PackedScene" uid="uid://bjc0ryusd4bme" path="res://enemy/p2.tscn" id="4_nk32p"]
 
 [node name="Node2D" type="Node2D" unique_id=1142666595]
 script = ExtResource("1_oda23")
 
 [node name="zeca" parent="." unique_id=801510659 instance=ExtResource("2_liwkw")]
-position = Vector2(576, 320)
-
-[node name="inimigo" parent="." unique_id=1346157943 instance=ExtResource("3_oda23")]
-position = Vector2(520, 136)
-
-[node name="inimigo2" parent="." unique_id=530106910 instance=ExtResource("3_oda23")]
-position = Vector2(392, 264)
-
-[node name="inimigo3" parent="." unique_id=996438342 instance=ExtResource("3_oda23")]
-position = Vector2(720, 200)
+position = Vector2(576, 576)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2115819263]
 
@@ -29,10 +21,19 @@ offset_bottom = 40.0
 
 [node name="BotaoReiniciar" type="Button" parent="CanvasLayer/Control" unique_id=1817818858]
 layout_mode = 0
-offset_left = 536.0
-offset_top = 256.0
-offset_right = 622.0
-offset_bottom = 287.0
+offset_left = 360.00003
+offset_top = 246.00002
+offset_right = 446.00003
+offset_bottom = 277.0
+scale = Vector2(5, 5)
 text = "REINICIAR"
 
+[node name="Spawner" type="Node2D" parent="." unique_id=989992612]
+script = ExtResource("3_oda23")
+inimigo_scene = ExtResource("4_nk32p")
+
+[node name="Timer" type="Timer" parent="Spawner" unique_id=717580471]
+wait_time = 2.0
+
 [connection signal="pressed" from="CanvasLayer/Control/BotaoReiniciar" to="." method="_on_botao_reiniciar_pressed"]
+[connection signal="timeout" from="Spawner/Timer" to="Spawner" method="_on_timer_timeout"]

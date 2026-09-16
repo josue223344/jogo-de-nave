@@ -1,6 +1,9 @@
 extends Area2D
 
 const SPEED = 100.0
+const LIMITE_ESQUERDO = 0
+const LIMITE_DIREITO = 1152
+const LIMITE_SUPERIOR = -70
 
 var direction := Vector2.ZERO
 var vida = 1
@@ -13,6 +16,20 @@ func _ready() -> void:
 func _physics_process(delta):
 	position -= SPEED * direction * delta
 	sprite.play("idle")
+	if position.y > 700:
+		queue_free()
+#limite do inimigo
+	if position.x < LIMITE_ESQUERDO:
+		position.x = LIMITE_ESQUERDO
+		direction.x *= -1
+
+	if position.x > LIMITE_DIREITO:
+		position.x = LIMITE_DIREITO
+		direction.x *= -1
+
+	if position.y < LIMITE_SUPERIOR:
+		position.y = LIMITE_SUPERIOR
+		direction.y *= -1
 
 #causa dano
 func _on_area_2d_body_entered(body: Node2D) -> void:
@@ -39,6 +56,12 @@ func direçao_aleatoria() -> void:
 		randf_range(-1.0, 1.0),
 		randf_range(-1.0, 1.0)
 	).normalized()
+
+	while direction.y > 0:
+		direction = Vector2(
+			randf_range(-1.0, 1.0),
+			randf_range(-1.0, 1.0)
+		).normalized()
 
 func _on_timer_timeout() -> void:
 	direçao_aleatoria()

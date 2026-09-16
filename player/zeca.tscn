@@ -102,8 +102,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_t55fi"]
-size = Vector2(42, 18)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6u00k"]
 
 [node name="Node2D" type="Node2D" unique_id=801510659]
 
@@ -113,12 +112,13 @@ tiro_scene = ExtResource("2_mp1n0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=484269215]
 z_index = 1
-scale = Vector2(3, 3)
+scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_g4v7s")
-animation = &"idle"
+animation = &"up"
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="CharacterBody2D" unique_id=752737282]
-shape = SubResource("RectangleShape2D_t55fi")
+scale = Vector2(2.5, 2.5)
+shape = SubResource("RectangleShape2D_6u00k")
 
 [node name="TimerTiro" type="Timer" parent="CharacterBody2D" unique_id=1132372308]
 wait_time = 0.15

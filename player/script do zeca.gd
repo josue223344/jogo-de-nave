@@ -49,12 +49,16 @@ func _physics_process(_delta: float) -> void:
 	elif velocity.y > 0:
 		sprite.play("down")
 
-
 	# Isso pergunta:"O jogador acabou de apertar o botão ui_accept?"
 	#just_pressed significa:"Foi apertado agora."
 	if Input.is_action_pressed("ui_accept") and pode_atirar:
 		atirar()
 
+	if Input.is_action_pressed("ui_select"):
+		resetar()
+
+func resetar() -> void:
+	get_tree().reload_current_scene()
 
 # atirar() é uma funçao criada
 func atirar() -> void:
