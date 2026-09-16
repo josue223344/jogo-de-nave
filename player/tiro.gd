@@ -11,3 +11,9 @@ func _physics_process(delta):
 
 func _on_body_entered(_body):
 	queue_free()
+
+#causa dano
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.has_method("receber_dano_tiro"):
+		body.receber_dano_tiro(1)
+		queue_free()

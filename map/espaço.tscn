@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://pj3wyq8f3at3" path="res://map/espaço.gd" id="1_oda23"]
 [ext_resource type="PackedScene" uid="uid://kabos0sm28on" path="res://player/zeca.tscn" id="2_liwkw"]
-[ext_resource type="PackedScene" uid="uid://bfl42fs5em7oq" path="res://enemy/p1.tscn" id="3_oda23"]
+[ext_resource type="PackedScene" uid="uid://bjc0ryusd4bme" path="res://enemy/p2.tscn" id="3_oda23"]
 
 [node name="Node2D" type="Node2D" unique_id=1142666595]
 script = ExtResource("1_oda23")
@@ -10,14 +10,14 @@ script = ExtResource("1_oda23")
 [node name="zeca" parent="." unique_id=801510659 instance=ExtResource("2_liwkw")]
 position = Vector2(576, 320)
 
-[node name="inimigo" parent="." unique_id=2118504158 instance=ExtResource("3_oda23")]
-position = Vector2(712, 208)
+[node name="inimigo" parent="." unique_id=1346157943 instance=ExtResource("3_oda23")]
+position = Vector2(520, 136)
 
-[node name="inimigo2" parent="." unique_id=705126622 instance=ExtResource("3_oda23")]
-position = Vector2(576, 168)
+[node name="inimigo2" parent="." unique_id=530106910 instance=ExtResource("3_oda23")]
+position = Vector2(392, 264)
 
-[node name="inimigo3" parent="." unique_id=908387582 instance=ExtResource("3_oda23")]
-position = Vector2(432, 216)
+[node name="inimigo3" parent="." unique_id=996438342 instance=ExtResource("3_oda23")]
+position = Vector2(720, 200)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2115819263]
 

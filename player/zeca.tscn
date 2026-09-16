@@ -102,8 +102,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
-size = Vector2(60, 12)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t55fi"]
+size = Vector2(42, 18)
 
 [node name="Node2D" type="Node2D" unique_id=801510659]
 
@@ -112,13 +112,16 @@ script = ExtResource("1_tiyxg")
 tiro_scene = ExtResource("2_mp1n0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=484269215]
-position = Vector2(9.536743e-07, -1.013279e-06)
+z_index = 1
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_g4v7s")
-animation = &"up"
+animation = &"idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=932826928]
-position = Vector2(0, 12)
-shape = SubResource("RectangleShape2D_g4v7s")
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="CharacterBody2D" unique_id=752737282]
+shape = SubResource("RectangleShape2D_t55fi")
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=1823648729]
+[node name="TimerTiro" type="Timer" parent="CharacterBody2D" unique_id=1132372308]
+wait_time = 0.15
+one_shot = true
+
+[connection signal="timeout" from="CharacterBody2D/TimerTiro" to="CharacterBody2D" method="_on_timer_tiro_timeout"]

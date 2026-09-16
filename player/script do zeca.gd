@@ -9,6 +9,7 @@ const SPEED = 300.0
 const VIDA_MAXIMA = 3
 #var é um valor armazenado alteravel
 var vida = VIDA_MAXIMA
+var pode_atirar = true
 #@export permite que uma variável seja configurada pelo Inspector da Godot.
 #PackedScene representa uma cena salva que pode ser carregada e usada como um molde para criar novas instâncias.
 @export var tiro_scene: PackedScene
@@ -51,7 +52,7 @@ func _physics_process(_delta: float) -> void:
 
 	# Isso pergunta:"O jogador acabou de apertar o botão ui_accept?"
 	#just_pressed significa:"Foi apertado agora."
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_pressed("ui_accept") and pode_atirar:
 		atirar()
 
 
@@ -67,7 +68,11 @@ func atirar() -> void:
 #current_scene:pega a cena que está sendo executada atualmente.
 #add_child(tiro):adiciona o tiro como filho dessa cena
 	get_tree().current_scene.add_child(tiro)
+	pode_atirar = false
+	$TimerTiro.start()
 
+func _on_timer_tiro_timeout() -> void:
+	pode_atirar = true
 
 # receber_dano é uma funçao criada, e recebe um numeri interiro(int) chamado dano
 func receber_dano(dano: int) -> void:
@@ -84,7 +89,6 @@ func receber_dano(dano: int) -> void:
 #se vida chegar a 0 a func morrer() é ativada
 	if vida <= 0:
 		morrer()
-
 
 # morrer() foi um funçao criada
 func morrer() -> void:

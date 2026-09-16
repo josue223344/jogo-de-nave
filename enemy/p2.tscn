@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://bjc0ryusd4bme"]
+
+[ext_resource type="Script" uid="uid://bc8p42g2bgmvi" path="res://enemy/p_2.gd" id="1_6u00k"]
+[ext_resource type="Texture2D" uid="uid://c2ii25kxgexyn" path="res://enemy/inimigo 1.png" id="2_en4ti"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1k7bn"]
+atlas = ExtResource("2_en4ti")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xlh8j"]
+atlas = ExtResource("2_en4ti")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qkyit"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1k7bn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xlh8j")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_geqgc"]
+
+[node name="Area2D" type="Area2D" unique_id=1346157943]
+script = ExtResource("1_6u00k")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1099231433]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_qkyit")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1678731609]
+shape = SubResource("RectangleShape2D_geqgc")
+
+[node name="Timer" type="Timer" parent="." unique_id=1855838970]
+
+[connection signal="area_entered" from="." to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="." to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
