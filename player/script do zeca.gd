@@ -10,6 +10,8 @@ const VIDA_MAXIMA = 3
 #var é um valor armazenado alteravel
 var vida = VIDA_MAXIMA
 var pode_atirar = true
+var esta_morrendo := false
+
 #@export permite que uma variável seja configurada pelo Inspector da Godot.
 #PackedScene representa uma cena salva que pode ser carregada e usada como um molde para criar novas instâncias.
 @export var tiro_scene: PackedScene
@@ -22,6 +24,8 @@ var pode_atirar = true
 #Godot chama automaticamente _physics_process() várias vezes durante o jogo
 #_delta: float representa "Quanto tempo passou desde a última vez que essa função foi executada?"
 func _physics_process(_delta: float) -> void:
+	if esta_morrendo:
+		return
 #ui_left,ui_right, ui_up e ui_down representam a direçao que o personagem vai andar
 	var direction := Input.get_vector("ui_left","ui_right","ui_up","ui_down")
 #velocity é uma var embutida em CharacterBody2D
@@ -35,7 +39,6 @@ func _physics_process(_delta: float) -> void:
 		velocity = Vector2.ZERO
 #move_and_slide() manda o personagem se movimentar.
 	move_and_slide()
-
 
 # Aqui você está dizendo qual animação deve ser reproduzida.
 	if velocity == Vector2.ZERO:
@@ -96,10 +99,15 @@ func receber_dano(dano: int) -> void:
 
 # morrer() foi um funçao criada
 func morrer() -> void:
-	print("Morreu!")
-#procura um nó especifico dentro da cena
+	if esta_morrendo:
+		return
+
+	esta_morrendo = true
+	velocity = Vector2.ZERO
+
 	var botao = get_tree().current_scene.get_node("CanvasLayer/Control/BotaoReiniciar")
-#manda o botão aparecer.
 	botao.show()
-#queue_free() agenda o objeto para ser removido da árvore de cenas.
+
+	sprite.play("dead")
+	await sprite.animation_finished
 	queue_free()

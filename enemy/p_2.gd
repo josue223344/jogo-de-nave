@@ -1,12 +1,13 @@
 extends Area2D
 
-const SPEED = 100.0
+const SPEED = 250.0
 const LIMITE_ESQUERDO = 0
 const LIMITE_DIREITO = 1152
 const LIMITE_SUPERIOR = -70
 
 var direction := Vector2.ZERO
 var vida = 1
+var inimigo_vivo := false
 @onready var sprite = $AnimatedSprite2D
 
 func _ready() -> void:
@@ -14,6 +15,8 @@ func _ready() -> void:
 	$Timer.start()
 
 func _physics_process(delta):
+	if inimigo_vivo:
+		return
 	position -= SPEED * direction * delta
 	sprite.play("idle")
 	if position.y > 700:
@@ -33,12 +36,17 @@ func _physics_process(delta):
 
 #causa dano
 func _on_area_2d_body_entered(body: Node2D) -> void:
+	if inimigo_vivo:
+		return
 	if body.has_method("receber_dano"):
 		body.receber_dano(1)
 		queue_free()
 
 # receber_dano é uma funçao criada, e recebe um numeri interiro(int) chamado dano
 func receber_dano_tiro(dano: int) -> void:
+	if inimigo_vivo:
+		return
+	
 #vida = vida - dano
 	vida -= dano
 # Indicador visual de dano
@@ -49,6 +57,9 @@ func receber_dano_tiro(dano: int) -> void:
 	sprite.modulate = Color.WHITE
 #se vida chegar a 0 a func morrer() é ativada
 	if vida <= 0:
+		inimigo_vivo = true
+		sprite.play("dead")
+		await sprite.animation_finished
 		queue_free()
 
 func direçao_aleatoria() -> void:

@@ -21,11 +21,11 @@ offset_bottom = 40.0
 
 [node name="BotaoReiniciar" type="Button" parent="CanvasLayer/Control" unique_id=1817818858]
 layout_mode = 0
-offset_left = 360.00003
-offset_top = 246.00002
-offset_right = 446.00003
-offset_bottom = 277.0
-scale = Vector2(5, 5)
+offset_left = 408.0
+offset_top = 256.0
+offset_right = 494.0
+offset_bottom = 287.0
+scale = Vector2(4, 4)
 text = "REINICIAR"
 
 [node name="Spawner" type="Node2D" parent="." unique_id=989992612]
@@ -33,7 +33,6 @@ script = ExtResource("3_oda23")
 inimigo_scene = ExtResource("4_nk32p")
 
 [node name="Timer" type="Timer" parent="Spawner" unique_id=717580471]
-wait_time = 2.0
 
 [connection signal="pressed" from="CanvasLayer/Control/BotaoReiniciar" to="." method="_on_botao_reiniciar_pressed"]
 [connection signal="timeout" from="Spawner/Timer" to="Spawner" method="_on_timer_timeout"]

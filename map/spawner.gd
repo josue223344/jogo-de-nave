@@ -11,7 +11,7 @@ func _on_timer_timeout() -> void:
 func spawner_inimigo() -> void:
 	var inimigo = inimigo_scene.instantiate()
 	inimigo.global_position = Vector2(
-	randf_range(100, 900),
-	randf_range(-60, -10)
+	randf_range(50, 900),
+	randf_range(-100, -50)
 )
 	get_tree().current_scene.add_child(inimigo)

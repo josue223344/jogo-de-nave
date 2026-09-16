@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://p8cpgrryg0r5"
-path="res://.godot/imported/aurum.png-c49ae3d1d644a1dec09eb3ad59eaa43e.ctex"
+uid="uid://ft80u4eu1q5"
+path="res://.godot/imported/nave.png-687d48a0f217da0cc91046894acae7e9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/aurum.png"
-dest_files=["res://.godot/imported/aurum.png-c49ae3d1d644a1dec09eb3ad59eaa43e.ctex"]
+source_file="res://player/nave.png"
+dest_files=["res://.godot/imported/nave.png-687d48a0f217da0cc91046894acae7e9.ctex"]
 
 [params]
 

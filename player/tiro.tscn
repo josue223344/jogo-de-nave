@@ -4,17 +4,17 @@
 [ext_resource type="Texture2D" uid="uid://dw4kf8wdwcak0" path="res://player/tiro.png" id="2_f81w2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kc2uj"]
+size = Vector2(8, 8)
 
 [node name="Area2D" type="Area2D" unique_id=130678896]
 script = ExtResource("1_glrs6")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=347095409]
 position = Vector2(-4.7683716e-07, 1.4305115e-06)
-scale = Vector2(2.5, 2.5)
+scale = Vector2(2, 2)
 texture = ExtResource("2_f81w2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1817742499]
-scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_kc2uj")
 
 [connection signal="area_entered" from="." to="." method="_on_area_2d_body_entered"]
