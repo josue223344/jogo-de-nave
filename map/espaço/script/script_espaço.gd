@@ -1,28 +1,37 @@
-#Primeira parte
-
+# Controla o fundo espacial, a interface de vida e o reinício da fase.
 extends Node2D
 
-#@onready faz uma variável ser inicializada quando o nó estiver pronto.
+# @onready procura cada nó somente quando esta cena já está pronta.
 @onready var botao_reiniciar = $CanvasLayer/Control/BotaoReiniciar
+@onready var jogador = $zeca/CharacterBody2D
+@onready var barra_vida = $CanvasLayer/Control/ProgressBar
 
-#QUANTIDADE_ESTRELAS: define que o fundo terá 90 estrelas.
+# Define quantas estrelas serão criadas para o fundo espacial.
 const QUANTIDADE_ESTRELAS := 90
 #estrelas: guarda os dados de cada estrela, como posição, velocidade, tamanho e cor.
 var estrelas: Array[Dictionary] = []
 #gerador: escolhe valores aleatórios para que as estrelas apareçam em lugares diferentes.
 var gerador := RandomNumberGenerator.new()
 
-#Segunda parte
 
+
+
+# --- Início da fase ---
 func _ready() -> void:
+	# Conecta o sinal do jogador à função que atualiza a barra de vida.
+	jogador.vida_alterada.connect(atualizar_vida)
+	atualizar_vida(jogador.vida)
 #O botão “REINICIAR” fica escondido. (botao_reiniciar.hide())
 	botao_reiniciar.hide()
 #criar_estrelas() cria as 90 estrelas.(funçao criada)
 	criar_estrelas()
 #queue_redraw() pede para a Godot desenhar o cenário na tela.
 	queue_redraw()
+	
 
-#Ela é uma funçao criada para repetir 90 vezes e guarda cada estrela nova:
+
+# --- Criação de estrelas ---
+# Limpa e cria a quantidade configurada de estrelas.
 func criar_estrelas() -> void:
 	estrelas.clear()
 #espalha as estrelas por toda tela visivel
@@ -45,8 +54,7 @@ func criar_estrelas() -> void:
 			"cor": Color(0.55 + camada * 0.15, 0.7 + camada * 0.1, 1.0, 0.55 + camada * 0.15)
 		})
 
-#_process() é uma função chamada repetidamente enquanto o jogo está rodando
-#delta é o tempo que passou desde a última atualização
+# _process roda a cada quadro; delta é o tempo passado desde o quadro anterior.
 func _process(delta: float) -> void:
 #Aqui o jogo novamente confere o tamanho da janela, para saber quando uma estrela saiu da tela.
 	var tamanho_tela := get_viewport_rect().size
@@ -66,7 +74,7 @@ func _process(delta: float) -> void:
 #redesenha a estrela na nova posiçao
 	queue_redraw()
 
-#draw() é a função responsável por colocar elementos visuais na tela.
+# _draw desenha o fundo e as estrelas antes dos demais nós da cena.
 func _draw() -> void:
 # Fundo escuro e estrelas em movimento, desenhados antes dos demais nós.
 	draw_rect(Rect2(Vector2.ZERO, get_viewport_rect().size), Color("07142b"))
@@ -76,6 +84,13 @@ func _draw() -> void:
 #a cor dela.
 	for estrela in estrelas:
 		draw_circle(estrela["posicao"], estrela["tamanho"], estrela["cor"])
+
+
+
+
+# Recebe a vida enviada pelo sinal vida_alterada e atualiza o ProgressBar.
+func atualizar_vida(vida_atual: int) -> void:
+	barra_vida.value = vida_atual
 
 #faz o botao REINICIAR resetar a cena
 func _on_botao_reiniciar_pressed() -> void:

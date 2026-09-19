@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dv76a4tme51sl"
-path="res://.godot/imported/ini1.png-85aa9c061694cb5f187c6e99622ecf93.ctex"
+uid="uid://cvf8mt6fev257"
+path="res://.godot/imported/C3_fundo.png-d497aec0e89324bbf02494e05e80dfc7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemy/ini1.png"
-dest_files=["res://.godot/imported/ini1.png-85aa9c061694cb5f187c6e99622ecf93.ctex"]
+source_file="res://map/base inimiga/textura/C3_fundo.png"
+dest_files=["res://.godot/imported/C3_fundo.png-d497aec0e89324bbf02494e05e80dfc7.ctex"]
 
 [params]
 

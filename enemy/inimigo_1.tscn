@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bjc0ryusd4bme"]
 
-[ext_resource type="Script" uid="uid://bc8p42g2bgmvi" path="res://enemy/p_2.gd" id="1_6u00k"]
-[ext_resource type="Texture2D" uid="uid://dv76a4tme51sl" path="res://enemy/ini1.png" id="2_6u00k"]
+[ext_resource type="Script" uid="uid://bc8p42g2bgmvi" path="res://enemy/script/script_inimigo_1.gd" id="1_6u00k"]
+[ext_resource type="Texture2D" uid="uid://dv76a4tme51sl" path="res://enemy/textura/I1.png" id="2_6u00k"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_en4ti"]
 atlas = ExtResource("2_6u00k")
@@ -51,19 +51,19 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ssn3b"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_vgfgn"]
+radius = 17.117243
 
 [node name="Area2D" type="Area2D" unique_id=1346157943]
 script = ExtResource("1_6u00k")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1099231433]
-scale = Vector2(4, 4)
+scale = Vector2(3.5, 3.5)
 sprite_frames = SubResource("SpriteFrames_qkyit")
 animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1678731609]
-scale = Vector2(2, 2)
-shape = SubResource("CircleShape2D_ssn3b")
+shape = SubResource("CircleShape2D_vgfgn")
 
 [node name="Timer" type="Timer" parent="." unique_id=1855838970]
 wait_time = 1.5

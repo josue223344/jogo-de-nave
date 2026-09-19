@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dw4kf8wdwcak0"
-path="res://.godot/imported/tiro.png-b79e24c02cfa719d22cf4987627aecb0.ctex"
+uid="uid://cj6par8bmdok2"
+path="res://.godot/imported/I2.png-840c75eb9da2677feba5a9d9ecdbe78c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/tiro.png"
-dest_files=["res://.godot/imported/tiro.png-b79e24c02cfa719d22cf4987627aecb0.ctex"]
+source_file="res://enemy/textura/I2.png"
+dest_files=["res://.godot/imported/I2.png-840c75eb9da2677feba5a9d9ecdbe78c.ctex"]
 
 [params]
 

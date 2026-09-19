@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://kabos0sm28on"]
 
-[ext_resource type="Script" uid="uid://blqt30yg4oak2" path="res://player/script do zeca.gd" id="1_tiyxg"]
+[ext_resource type="Script" uid="uid://blqt30yg4oak2" path="res://player/script/script_zeca.gd" id="1_tiyxg"]
 [ext_resource type="PackedScene" uid="uid://bsejupgsaanhm" path="res://player/tiro.tscn" id="2_mp1n0"]
-[ext_resource type="Texture2D" uid="uid://ft80u4eu1q5" path="res://player/nave.png" id="3_mp1n0"]
+[ext_resource type="Texture2D" uid="uid://ft80u4eu1q5" path="res://player/texturas/N1.png" id="3_mp1n0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w2fiw"]
 atlas = ExtResource("3_mp1n0")
@@ -102,7 +102,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"down",
-"speed": 5.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -146,10 +146,12 @@ animations = [{
 }],
 "loop": 1,
 "name": &"up",
-"speed": 5.0
+"speed": 10.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mp1n0"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w2fiw"]
+radius = 12.0
+height = 24.0
 
 [node name="Node2D" type="Node2D" unique_id=801510659]
 
@@ -159,13 +161,14 @@ tiro_scene = ExtResource("2_mp1n0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=484269215]
 z_index = 1
-scale = Vector2(4, 4)
+scale = Vector2(3.5, 3.5)
 sprite_frames = SubResource("SpriteFrames_g4v7s")
-animation = &"idle"
+animation = &"up"
+frame_progress = 0.32229462
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=752737282]
 scale = Vector2(2, 2)
-shape = SubResource("CapsuleShape2D_mp1n0")
+shape = SubResource("CapsuleShape2D_w2fiw")
 
 [node name="TimerTiro" type="Timer" parent="CharacterBody2D" unique_id=1132372308]
 wait_time = 0.15
