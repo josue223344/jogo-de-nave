@@ -27,32 +27,6 @@ func _ready() -> void:
 	criar_estrelas()
 #queue_redraw() pede para a Godot desenhar o cenário na tela.
 	queue_redraw()
-	
-
-
-# --- Criação de estrelas ---
-# Limpa e cria a quantidade configurada de estrelas.
-func criar_estrelas() -> void:
-	estrelas.clear()
-#espalha as estrelas por toda tela visivel
-	var tamanho_tela := get_viewport_rect().size
-
-#limita as informaçoes geradas a 90 unidades de cada
-	for indice in QUANTIDADE_ESTRELAS:
-#Divide as estrelas entre as camadas de 0 a 2
-		var camada := gerador.randi_range(0, 2)
-#define a velocidade das estrelas em cada camada
-		var velocidade: float = [45.0, 90.0, 160.0][camada]
-#define o tamanho das estrelas em cada camada
-		var tamanho: float = [1.0, 1.5, 2.5][camada]
-#aplica essa informaçoes a variavel estrela
-#append() adiciona a nova estrela na lista.
-		estrelas.append({
-			"posicao": Vector2(gerador.randf_range(0.0, tamanho_tela.x), gerador.randf_range(0.0, tamanho_tela.y)),
-			"velocidade": velocidade,
-			"tamanho": tamanho,
-			"cor": Color(0.55 + camada * 0.15, 0.7 + camada * 0.1, 1.0, 0.55 + camada * 0.15)
-		})
 
 # _process roda a cada quadro; delta é o tempo passado desde o quadro anterior.
 func _process(delta: float) -> void:
@@ -87,6 +61,30 @@ func _draw() -> void:
 
 
 
+
+# --- Criação de estrelas (compartilhada com as outras fases) ---
+# Limpa e cria a quantidade configurada de estrelas.
+func criar_estrelas() -> void:
+	estrelas.clear()
+#espalha as estrelas por toda tela visivel
+	var tamanho_tela := get_viewport_rect().size
+
+#limita as informaçoes geradas a 90 unidades de cada
+	for indice in QUANTIDADE_ESTRELAS:
+#Divide as estrelas entre as camadas de 0 a 2
+		var camada := gerador.randi_range(0, 2)
+#define a velocidade das estrelas em cada camada
+		var velocidade: float = [45.0, 90.0, 160.0][camada]
+#define o tamanho das estrelas em cada camada
+		var tamanho: float = [1.0, 1.5, 2.5][camada]
+#aplica essa informaçoes a variavel estrela
+#append() adiciona a nova estrela na lista.
+		estrelas.append({
+			"posicao": Vector2(gerador.randf_range(0.0, tamanho_tela.x), gerador.randf_range(0.0, tamanho_tela.y)),
+			"velocidade": velocidade,
+			"tamanho": tamanho,
+			"cor": Color(0.55 + camada * 0.15, 0.7 + camada * 0.1, 1.0, 0.55 + camada * 0.15)
+		})
 
 # Recebe a vida enviada pelo sinal vida_alterada e atualiza o ProgressBar.
 func atualizar_vida(vida_atual: int) -> void:

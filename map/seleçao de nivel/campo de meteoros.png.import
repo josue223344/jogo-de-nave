@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bw3q4c1olqbrq"
-path="res://.godot/imported/meteoros.png-f513967c96412c89e15d44c6020b3f15.ctex"
+uid="uid://dqm4bvvqcfw5a"
+path="res://.godot/imported/campo de meteoros.png-087bffae75a7723780859b32688599e4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://map/seleçao de nivel/meteoros.png"
-dest_files=["res://.godot/imported/meteoros.png-f513967c96412c89e15d44c6020b3f15.ctex"]
+source_file="res://map/seleçao de nivel/campo de meteoros.png"
+dest_files=["res://.godot/imported/campo de meteoros.png-087bffae75a7723780859b32688599e4.ctex"]
 
 [params]
 

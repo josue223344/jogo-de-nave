@@ -13,24 +13,24 @@ func _ready() -> void:
 	$Timer.start()
 	$Timer2.start()
 
+
+
+
 # Cria o inimigo 1 em uma posição aleatória acima da área visível.
 func spawner_inimigo() -> void:
 	var inimigo = inimigo_1.instantiate()
 	inimigo.global_position = Vector2(
-		randf_range(50, 900),
+		randf_range(50, 1100),
 		randf_range(-100, -50)
 	)
 
 	get_tree().current_scene.add_child(inimigo)
 
-
-
-
 # Cria o inimigo 2 na mesma faixa de entrada.
 func spawner_inimigo_2() -> void:
 	var inimigo = inimigo_2.instantiate()
 	inimigo.global_position = Vector2(
-		randf_range(50, 900),
+		randf_range(50, 1100),
 		randf_range(-100, -50)
 	)
 

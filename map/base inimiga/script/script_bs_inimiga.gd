@@ -7,7 +7,7 @@ extends Node2D
 @onready var barra_vida = $CanvasLayer/Control/ProgressBar
 
 # Esta fase não usa estrelas; o valor zero mantém a estrutura reutilizável.
-const QUANTIDADE_ESTRELAS := 0
+const QUANTIDADE_ESTRELAS := 90
 #estrelas: guarda os dados de cada estrela, como posição, velocidade, tamanho e cor.
 var estrelas: Array[Dictionary] = []
 #gerador: escolhe valores aleatórios para que as estrelas apareçam em lugares diferentes.
@@ -27,7 +27,39 @@ func _ready() -> void:
 	criar_estrelas()
 #queue_redraw() pede para a Godot desenhar o cenário na tela.
 	queue_redraw()
-	
+
+# _draw desenha o fundo e as estrelas antes dos demais nós da cena.
+func _draw() -> void:
+# Fundo escuro e estrelas em movimento, desenhados antes dos demais nós.
+	draw_rect(Rect2(Vector2.ZERO, get_viewport_rect().size), Color(0.241, 0.241, 0.241, 1.0))
+#O jogo pega cada estrela e desenha um pequeno círculo usando:
+#a posição da estrela;
+#o tamanho dela;
+#a cor dela.
+	for estrela in estrelas:
+		draw_circle(estrela["posicao"], estrela["tamanho"], estrela["cor"])
+
+# _process roda a cada quadro; delta é o tempo passado desde o quadro anterior.
+func _process(delta: float) -> void:
+#Aqui o jogo novamente confere o tamanho da janela, para saber quando uma estrela saiu da tela.
+	var tamanho_tela := get_viewport_rect().size
+#Este laço percorre todas as estrelas da lista, uma por uma.
+	for estrela in estrelas:
+#Essa é a linha que faz a estrela andar.
+#posicao.y é a posição vertical da estrela.
+#Somar um valor em y faz a estrela descer.
+#velocidade * delta define quanto ela desce naquela atualização.
+		estrela["posicao"].y += estrela["velocidade"] * delta
+#Quando uma estrela passa da parte inferior da tela:
+#Ela não é destruída. Em vez disso, ela reaparece no topo da tela, em uma posição horizontal aleatória.
+		if estrela["posicao"].y > tamanho_tela.y:
+#-estrela["tamanho"] faz a estrela nascer levemente acima da área visível
+			estrela["posicao"] = Vector2(gerador.randf_range(0.0, tamanho_tela.x), -estrela["tamanho"])
+
+#redesenha a estrela na nova posiçao
+	queue_redraw()
+
+
 
 
 # --- Criação de estrelas (compartilhada com as outras fases) ---
@@ -53,40 +85,6 @@ func criar_estrelas() -> void:
 			"tamanho": tamanho,
 			"cor": Color(0.55 + camada * 0.15, 0.7 + camada * 0.1, 1.0, 0.55 + camada * 0.15)
 		})
-
-# _process roda a cada quadro; delta é o tempo passado desde o quadro anterior.
-func _process(delta: float) -> void:
-#Aqui o jogo novamente confere o tamanho da janela, para saber quando uma estrela saiu da tela.
-	var tamanho_tela := get_viewport_rect().size
-#Este laço percorre todas as estrelas da lista, uma por uma.
-	for estrela in estrelas:
-#Essa é a linha que faz a estrela andar.
-#posicao.y é a posição vertical da estrela.
-#Somar um valor em y faz a estrela descer.
-#velocidade * delta define quanto ela desce naquela atualização.
-		estrela["posicao"].y += estrela["velocidade"] * delta
-#Quando uma estrela passa da parte inferior da tela:
-#Ela não é destruída. Em vez disso, ela reaparece no topo da tela, em uma posição horizontal aleatória.
-		if estrela["posicao"].y > tamanho_tela.y:
-#-estrela["tamanho"] faz a estrela nascer levemente acima da área visível
-			estrela["posicao"] = Vector2(gerador.randf_range(0.0, tamanho_tela.x), -estrela["tamanho"])
-
-#redesenha a estrela na nova posiçao
-	queue_redraw()
-
-# _draw desenha o fundo e as estrelas antes dos demais nós da cena.
-func _draw() -> void:
-# Fundo escuro e estrelas em movimento, desenhados antes dos demais nós.
-	draw_rect(Rect2(Vector2.ZERO, get_viewport_rect().size), Color(0.241, 0.241, 0.241, 1.0))
-#O jogo pega cada estrela e desenha um pequeno círculo usando:
-#a posição da estrela;
-#o tamanho dela;
-#a cor dela.
-	for estrela in estrelas:
-		draw_circle(estrela["posicao"], estrela["tamanho"], estrela["cor"])
-
-
-
 
 # Recebe a vida enviada pelo sinal vida_alterada e atualiza o ProgressBar.
 func atualizar_vida(vida_atual: int) -> void:

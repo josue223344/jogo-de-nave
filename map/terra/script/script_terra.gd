@@ -7,7 +7,7 @@ extends Node2D
 @onready var barra_vida = $CanvasLayer/Control/ProgressBar
 
 # Esta fase não usa estrelas; o valor zero mantém a estrutura reutilizável.
-const QUANTIDADE_ESTRELAS := 0
+const QUANTIDADE_ESTRELAS := 90
 #estrelas: guarda os dados de cada estrela, como posição, velocidade, tamanho e cor.
 var estrelas: Array[Dictionary] = []
 #gerador: escolhe valores aleatórios para que as estrelas apareçam em lugares diferentes.
@@ -27,30 +27,6 @@ func _ready() -> void:
 	criar_estrelas()
 #queue_redraw() pede para a Godot desenhar o cenário na tela.
 	queue_redraw()
-
-# --- Criação de estrelas (compartilhada com as outras fases) ---
-# Limpa e cria a quantidade configurada de estrelas.
-func criar_estrelas() -> void:
-	estrelas.clear()
-#espalha as estrelas por toda tela visivel
-	var tamanho_tela := get_viewport_rect().size
-
-#limita as informaçoes geradas a 90 unidades de cada
-	for indice in QUANTIDADE_ESTRELAS:
-#Divide as estrelas entre as camadas de 0 a 2
-		var camada := gerador.randi_range(0, 2)
-#define a velocidade das estrelas em cada camada
-		var velocidade: float = [45.0, 90.0, 160.0][camada]
-#define o tamanho das estrelas em cada camada
-		var tamanho: float = [1.0, 1.5, 2.5][camada]
-#aplica essa informaçoes a variavel estrela
-#append() adiciona a nova estrela na lista.
-		estrelas.append({
-			"posicao": Vector2(gerador.randf_range(0.0, tamanho_tela.x), gerador.randf_range(0.0, tamanho_tela.y)),
-			"velocidade": velocidade,
-			"tamanho": tamanho,
-			"cor": Color(0.55 + camada * 0.15, 0.7 + camada * 0.1, 1.0, 0.55 + camada * 0.15)
-		})
 
 # _process roda a cada quadro; delta é o tempo passado desde o quadro anterior.
 func _process(delta: float) -> void:
@@ -75,7 +51,7 @@ func _process(delta: float) -> void:
 # _draw desenha o fundo e as estrelas antes dos demais nós da cena.
 func _draw() -> void:
 # Fundo escuro e estrelas em movimento, desenhados antes dos demais nós.
-	draw_rect(Rect2(Vector2.ZERO, get_viewport_rect().size), Color(0.0, 0.325, 0.004, 1.0))
+	draw_rect(Rect2(Vector2.ZERO, get_viewport_rect().size), Color(0.0, 0.378, 0.005, 1.0))
 #O jogo pega cada estrela e desenha um pequeno círculo usando:
 #a posição da estrela;
 #o tamanho dela;
@@ -85,6 +61,30 @@ func _draw() -> void:
 
 
 
+
+# --- Criação de estrelas (compartilhada com as outras fases) ---
+# Limpa e cria a quantidade configurada de estrelas.
+func criar_estrelas() -> void:
+	estrelas.clear()
+#espalha as estrelas por toda tela visivel
+	var tamanho_tela := get_viewport_rect().size
+
+#limita as informaçoes geradas a 90 unidades de cada
+	for indice in QUANTIDADE_ESTRELAS:
+#Divide as estrelas entre as camadas de 0 a 2
+		var camada := gerador.randi_range(0, 2)
+#define a velocidade das estrelas em cada camada
+		var velocidade: float = [45.0, 90.0, 160.0][camada]
+#define o tamanho das estrelas em cada camada
+		var tamanho: float = [1.0, 1.5, 2.5][camada]
+#aplica essa informaçoes a variavel estrela
+#append() adiciona a nova estrela na lista.
+		estrelas.append({
+			"posicao": Vector2(gerador.randf_range(0.0, tamanho_tela.x), gerador.randf_range(0.0, tamanho_tela.y)),
+			"velocidade": velocidade,
+			"tamanho": tamanho,
+			"cor": Color(0.55 + camada * 0.15, 0.7 + camada * 0.1, 1.0, 0.55 + camada * 0.15)
+		})
 
 # Recebe a vida enviada pelo sinal vida_alterada e atualiza o ProgressBar.
 func atualizar_vida(vida_atual: int) -> void:
