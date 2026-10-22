@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ewpb0kd24uda"]
 
-[ext_resource type="Script" uid="uid://pj3wyq8f3at3" path="res://map/espaço/script/script_espaço.gd" id="1_oda23"]
+[ext_resource type="Script" uid="uid://ci5ps2jilagd7" path="res://map/espaço/script/script_espaço.gd" id="1_oda23"]
 [ext_resource type="PackedScene" uid="uid://kabos0sm28on" path="res://player/zeca.tscn" id="2_liwkw"]
 [ext_resource type="Script" uid="uid://d0jpi8cqace1q" path="res://map/espaço/script/script_spawner_C2.gd" id="3_oda23"]
 
@@ -19,7 +19,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Control" unique_id=1334362366]
-modulate = Color(0.011764706, 1, 0.078431375, 1)
+modulate = Color(0.9882353, 0, 0, 1)
 layout_mode = 0
 offset_left = 8.0
 offset_top = 624.0

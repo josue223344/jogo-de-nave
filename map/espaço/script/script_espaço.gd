@@ -1,4 +1,4 @@
-# Controla o fundo espacial, a interface de vida e o reinício da fase.
+# Controla o cenário da Terra, a interface de vida e o reinício da fase.
 extends Node2D
 
 # @onready procura cada nó somente quando esta cena já está pronta.
@@ -6,7 +6,7 @@ extends Node2D
 @onready var jogador = $zeca/CharacterBody2D
 @onready var barra_vida = $CanvasLayer/Control/ProgressBar
 
-# Define quantas estrelas serão criadas para o fundo espacial.
+# Esta fase não usa estrelas; o valor zero mantém a estrutura reutilizável.
 const QUANTIDADE_ESTRELAS := 90
 #estrelas: guarda os dados de cada estrela, como posição, velocidade, tamanho e cor.
 var estrelas: Array[Dictionary] = []
@@ -51,7 +51,7 @@ func _process(delta: float) -> void:
 # _draw desenha o fundo e as estrelas antes dos demais nós da cena.
 func _draw() -> void:
 # Fundo escuro e estrelas em movimento, desenhados antes dos demais nós.
-	draw_rect(Rect2(Vector2.ZERO, get_viewport_rect().size), Color("07142b"))
+	draw_rect(Rect2(Vector2.ZERO, get_viewport_rect().size), Color(0.08, 0.0, 0.415, 1.0))
 #O jogo pega cada estrela e desenha um pequeno círculo usando:
 #a posição da estrela;
 #o tamanho dela;

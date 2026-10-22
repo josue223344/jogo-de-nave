@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dr41na2j510yo"]
 
-[ext_resource type="Script" uid="uid://ci5ps2jilagd7" path="res://map/terra/script/script_terra.gd" id="1_xkb5j"]
+[ext_resource type="Script" uid="uid://pj3wyq8f3at3" path="res://map/terra/script/script_terra.gd" id="1_xkb5j"]
 [ext_resource type="PackedScene" uid="uid://kabos0sm28on" path="res://player/zeca.tscn" id="2_cvmew"]
 [ext_resource type="Script" uid="uid://dv3vuo4vdo7qb" path="res://map/terra/script/script_spawner_C1.gd" id="3_xkb5j"]
 

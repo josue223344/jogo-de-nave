@@ -7,7 +7,7 @@ extends Node2D
 @onready var barra_vida = $CanvasLayer/Control/ProgressBar
 
 # Esta fase não usa estrelas; o valor zero mantém a estrutura reutilizável.
-const QUANTIDADE_ESTRELAS := 90
+const QUANTIDADE_ESTRELAS := 0
 #estrelas: guarda os dados de cada estrela, como posição, velocidade, tamanho e cor.
 var estrelas: Array[Dictionary] = []
 #gerador: escolhe valores aleatórios para que as estrelas apareçam em lugares diferentes.
